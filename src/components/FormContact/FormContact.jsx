@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addContact } from 'redux/actions';
-import { getFilteredContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/contacts-slice';
+import { getFilteredContacts } from 'redux/contacts/contacts-selectors';
 
 import { Form, Label, Input, Button } from './FormContact.styled';
 
