@@ -16,5 +16,5 @@ const persistConfig = {
   blacklist: ['filter'],
 };
 
-export const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 export default persistedReducer;
