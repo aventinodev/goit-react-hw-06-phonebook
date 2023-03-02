@@ -19,19 +19,34 @@ const FormContact = () => {
   const contacts = useSelector(getFilteredContacts);
   const dispatch = useDispatch();
 
+  const isDublicate = (name, number) => {
+    const normalizedName = name.toLowerCase();
+    const result = contacts.find(contact => {
+      return (
+        contact.name.toLowerCase() === normalizedName ||
+        contact.number === number
+      );
+    });
+    return Boolean(result);
+  };
+
   const onAddContact = e => {
     e.preventDefault();
-    const normalizedName = name.toLowerCase();
-    const checkName = contacts.find(
-      contact => contact.name.toLowerCase() === normalizedName
-    );
-    if (checkName) {
-      return alert(` ${name} is alredy in contacts`);
+    if (isDublicate(name, number)) {
+      alert('Contact with such name or number is already  exist');
+      return false;
     }
-    const checkNumber = contacts.find(contact => contact.number === number);
-    if (checkNumber) {
-      return alert(`Contact with ${number} is already  exist`);
-    }
+    // const normalizedName = name.toLowerCase();
+    // const checkName = contacts.find(
+    //   contact => contact.name.toLowerCase() === normalizedName
+    // );
+    // if (checkName) {
+    //   return alert(` ${name} is alredy in contacts`);
+    // }
+    // const checkNumber = contacts.find(contact => contact.number === number);
+    // if (checkNumber) {
+    //   return alert(`Contact with ${number} is already  exist`);
+    // }
 
     dispatch(addContact({ name, number }));
     setState({ ...initialState });
